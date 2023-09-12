@@ -1,1 +1,5 @@
-# PDS2
+# Introdução
+O projeto se consiste em uma página web que apresentara informações do mundo do futebol em tempo real, com as principais notícias do dia sendo publicadas a medida com que forem aparecendo, seja elas notícias dos jogos do dia, rumores e informações de transferência, noticiais dos principais times e principais seleções do mundo, com cobertura dos principais eventos, como a Copa do Mundo, Champions League, Campeonatos Nacionais dos principais países, como Brasil, Inglaterra, Espanha, França, Alemanha, entre outros.
+
+# Descrição
+O projeto apresentara uma série de fatores que farão com que desperte o interesse dos leitores em optar pela utilização da página web em questão, como a opção de colecionar figurinhas para os álbuns da Copa do Mundo e dos principais campeonatos do mundo de forma digital, a medida com que os usuários realizem atividades na página, como comentar, publicar e curtir notícias, de forma que o site possa ter uma interação com os usuários e que os usuários possam interagir também com outros usuários, seja por comentários, ou pela troca de figurinhas desses álbuns, garantindo assim um site interativo e que não seja apenas uma página de leitura.

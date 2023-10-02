@@ -1,7 +1,5 @@
 <?php
 
-
-
 require_once("../service/UsuarioService.php");
 
 header("Access-Control-Allow-Origin: *");

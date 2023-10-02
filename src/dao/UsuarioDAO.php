@@ -24,6 +24,18 @@ class UsuarioDAO
         }
     }
 
+    public static function update($args)
+    {
+        switch ($args[0]) {
+            case "email":
+                return self::updateEmail($args["id"], $args["email"]);
+            case "nome":
+                return self::updateNome($args["id"], $args["nome"]);
+            case "senha":
+                return self::updateSenha($args["id"], $args["senha"]);
+        }
+    }
+
     protected static function buscarUserPeloEmail(String $email): ?Usuario
     {
         try {
@@ -120,6 +132,93 @@ class UsuarioDAO
             } else {
                 return null;
             }
+        } catch (Exception $e) {
+            Connection::showLog($e->getMessage());
+        }
+    }
+
+    protected static function updateEmail(String $id, String $email): ?Usuario
+    {
+        try {
+            $conn = Connection::getConn();
+
+            $atualizar = $conn->prepare(
+                'UPDATE usuarios
+				SET 
+				  email = LOWER(?),
+				WHERE
+				  id = ?'
+            );
+
+            $atualizar->bindValue(1, $email);
+            $atualizar->bindValue(2, $id);
+
+            $atualizar->execute();
+
+            if ($atualizar->rowCount() > 0) {
+                $resultado = $atualizar->fetch(); //Pegando apenas 1 linha
+                return Usuario::completeObject($resultado);
+            }
+
+            return null;
+        } catch (Exception $e) {
+            Connection::showLog($e->getMessage());
+        }
+    }
+
+    protected static function updateNome(String $id, String $nome): ?Usuario
+    {
+        try {
+            $conn = Connection::getConn();
+
+            $atualizar = $conn->prepare(
+                'UPDATE usuarios
+				SET 
+				  nome = LOWER(?),
+				WHERE
+				  id = ?'
+            );
+
+            $atualizar->bindValue(1, $nome);
+            $atualizar->bindValue(2, $id);
+
+            $atualizar->execute();
+
+            if ($atualizar->rowCount() > 0) {
+                $resultado = $atualizar->fetch(); //Pegando apenas 1 linha
+                return Usuario::completeObject($resultado);
+            }
+
+            return null;
+        } catch (Exception $e) {
+            Connection::showLog($e->getMessage());
+        }
+    }
+
+    protected static function updateSenha(String $id, String $senha): ?Usuario
+    {
+        try {
+            $conn = Connection::getConn();
+
+            $atualizar = $conn->prepare(
+                'UPDATE usuarios
+				SET 
+				  senha = LOWER(?),
+				WHERE
+				  id = ?'
+            );
+
+            $atualizar->bindValue(1, $senha);
+            $atualizar->bindValue(2, $id);
+
+            $atualizar->execute();
+
+            if ($atualizar->rowCount() > 0) {
+                $resultado = $atualizar->fetch(); //Pegando apenas 1 linha
+                return Usuario::completeObject($resultado);
+            }
+
+            return null;
         } catch (Exception $e) {
             Connection::showLog($e->getMessage());
         }

@@ -19,6 +19,11 @@ class UsuarioService
         return UsuarioDAO::create($usuario);
     }
 
+    public static function updateUser($args): ?Usuario
+    {
+        return isset($email) ? UsuarioDAO::update(array($args["updateField"], $args)) : null;
+    }
+
     public static function getByEmail(?string $email): ?Usuario
     {
         return isset($email) ? UsuarioDAO::read(array("getByEmail", $email)) : null;

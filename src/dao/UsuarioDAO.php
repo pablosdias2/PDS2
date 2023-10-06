@@ -36,6 +36,11 @@ class UsuarioDAO
         }
     }
 
+    public static function delete($args)
+    {
+        return self::deletarUsuario($args);
+    }
+
     protected static function buscarUserPeloEmail(String $email): ?Usuario
     {
         try {
@@ -135,6 +140,26 @@ class UsuarioDAO
         } catch (Exception $e) {
             Connection::showLog($e->getMessage());
         }
+    }
+
+    protected static function deletarUsuario(int $id)
+    {
+        try {
+            $conn = Connection::getConn();
+      
+            $delete = $conn->prepare(
+              'DELETE FROM usuario
+                     WHERE id = ?'
+            );
+      
+            $delete->bindValue(1, $id);
+      
+            $delete->execute();
+      
+            return $delete->rowCount() == '0' ? FALSE : TRUE;
+          } catch (Exception $e) {
+            Connection::showLog($e->getMessage());
+          }  
     }
 
     protected static function updateEmail(String $id, String $email): ?Usuario

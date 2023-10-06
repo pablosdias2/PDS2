@@ -24,6 +24,11 @@ class UsuarioService
         return isset($email) ? UsuarioDAO::update(array($args["updateField"], $args)) : null;
     }
 
+    public static function deleteUser($args)
+    {
+        return isset($args) ? UsuarioDAO::delete($args["id"]) : null;
+    }
+
     public static function getByEmail(?string $email): ?Usuario
     {
         return isset($email) ? UsuarioDAO::read(array("getByEmail", $email)) : null;

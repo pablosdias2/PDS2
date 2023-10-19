@@ -1,0 +1,1 @@
+# noticia(id, titulo, descricao, texto, autor, imagem, data)

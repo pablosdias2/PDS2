@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Admin</title>
+  <title>Forms / Layouts - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -15,7 +15,9 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,10 +31,12 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+
 </head>
 
 <body>
 
+  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -195,7 +199,6 @@
 
   </header>
 
-  <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -263,70 +266,65 @@
     </ul>
 
   </aside>
+
+
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Tables</h1>
+      <h1>Noticias</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Users</li>
+          <li class="breadcrumb-item">Admin</li>
+          <li class="breadcrumb-item active">Noticias</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Users</h5>
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Delete Account</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Brandon@gmail.com</td>
-                    <td><i class="bi bi-person-x"></i></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Bridie@gmail.com</td>
-                    <td><i class="bi bi-person-x"></i></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Ashleigh@gmail.com</td>
-                    <td><i class="bi bi-person-x"></i></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>Angus@gmail.com</td>
-                    <td><i class="bi bi-person-x"></i></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Raheem@gmail.com</td>
-                    <td><i class="bi bi-person-x"></i></td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
+              <h5 class="card-title">Criar Noticias</h5>
+
+              <!-- Horizontal Form -->
+              <form>
+                <div class="row mb-3">
+                  <label for="inputTitulo" class="col-sm-2 col-form-label">Titulo</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputTitulo">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputDesc" class="col-sm-2 col-form-label">Descrição</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputDesc">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTexto" class="col-sm-2 col-form-label">Texto</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" style="height: 100px"></textarea>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputAutor" class="col-sm-2 col-form-label">Autor</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputAutor">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputImage" class="col-sm-2 col-form-label">Imagens</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile">
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- End Horizontal Form -->
 
             </div>
           </div>
@@ -343,11 +341,12 @@
       &copy; Copyright <strong><span>INFOOTBALL</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="">Humberto Mendes</a>
+      Designed by <a href="">HumbertoMendes</a>
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

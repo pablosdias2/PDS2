@@ -28,11 +28,11 @@ class UsuarioDAO
     {
         switch ($args[0]) {
             case "email":
-                return self::updateEmail($args["id"], $args["email"]);
+                return self::updateEmail($args[1]["id"], $args[1]["email"]);
             case "nome":
-                return self::updateNome($args["id"], $args["nome"]);
+                return self::updateNome($args[1]["id"], $args[1]["nome"]);
             case "senha":
-                return self::updateSenha($args["id"], $args["senha"]);
+                return self::updateSenha($args[1]["id"], $args[1]["senha"]);
         }
     }
 
@@ -148,7 +148,7 @@ class UsuarioDAO
             $conn = Connection::getConn();
       
             $delete = $conn->prepare(
-              'DELETE FROM usuario
+              'DELETE FROM usuarios
                      WHERE id = ?'
             );
       
@@ -162,7 +162,7 @@ class UsuarioDAO
           }  
     }
 
-    protected static function updateEmail(String $id, String $email): ?Usuario
+    protected static function updateEmail(String $id, String $email)
     {
         try {
             $conn = Connection::getConn();
@@ -170,7 +170,7 @@ class UsuarioDAO
             $atualizar = $conn->prepare(
                 'UPDATE usuarios
 				SET 
-				  email = LOWER(?),
+				  email = LOWER(?)
 				WHERE
 				  id = ?'
             );
@@ -180,10 +180,7 @@ class UsuarioDAO
 
             $atualizar->execute();
 
-            if ($atualizar->rowCount() > 0) {
-                $resultado = $atualizar->fetch(); //Pegando apenas 1 linha
-                return Usuario::completeObject($resultado);
-            }
+            return $atualizar->rowCount() > 0 ? TRUE : FALSE;
 
             return null;
         } catch (Exception $e) {
@@ -191,7 +188,7 @@ class UsuarioDAO
         }
     }
 
-    protected static function updateNome(String $id, String $nome): ?Usuario
+    protected static function updateNome(int $id, String $nome)
     {
         try {
             $conn = Connection::getConn();
@@ -199,9 +196,9 @@ class UsuarioDAO
             $atualizar = $conn->prepare(
                 'UPDATE usuarios
 				SET 
-				  nome = LOWER(?),
+				  nome = LOWER(?)
 				WHERE
-				  id = ?'
+                id = ?'
             );
 
             $atualizar->bindValue(1, $nome);
@@ -209,18 +206,14 @@ class UsuarioDAO
 
             $atualizar->execute();
 
-            if ($atualizar->rowCount() > 0) {
-                $resultado = $atualizar->fetch(); //Pegando apenas 1 linha
-                return Usuario::completeObject($resultado);
-            }
+            return $atualizar->rowCount() > 0 ? TRUE : FALSE;
 
-            return null;
         } catch (Exception $e) {
             Connection::showLog($e->getMessage());
         }
     }
 
-    protected static function updateSenha(String $id, String $senha): ?Usuario
+    protected static function updateSenha(String $id, String $senha)
     {
         try {
             $conn = Connection::getConn();
@@ -228,7 +221,7 @@ class UsuarioDAO
             $atualizar = $conn->prepare(
                 'UPDATE usuarios
 				SET 
-				  senha = LOWER(?),
+				  senha = LOWER(?)
 				WHERE
 				  id = ?'
             );
@@ -238,12 +231,9 @@ class UsuarioDAO
 
             $atualizar->execute();
 
-            if ($atualizar->rowCount() > 0) {
-                $resultado = $atualizar->fetch(); //Pegando apenas 1 linha
-                return Usuario::completeObject($resultado);
-            }
 
-            return null;
+            return $atualizar->rowCount() > 0 ? TRUE : FALSE;
+
         } catch (Exception $e) {
             Connection::showLog($e->getMessage());
         }

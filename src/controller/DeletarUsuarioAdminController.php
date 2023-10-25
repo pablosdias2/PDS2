@@ -8,8 +8,11 @@ header("Access-Control-Allow-Methods: GET, POST, PUT");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    parse_str(file_get_contents('php://input'), $_DELETE);
 
+    $json = (array) json_decode(file_get_contents("php://input"));
+    $_DELETE = $json;
+    
+    print_r($_DELETE);
     if(!isset($_DELETE["id"])){
         http_response_code(400);
     echo json_encode(array("message" => "Campo faltoso: 'id'"));
@@ -18,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 
    $result = UsuarioService::deleteUser($_DELETE);
 
-   if (isset($resultado)) {
+   if (isset($result)) {
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
     return;
   } else {

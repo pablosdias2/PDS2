@@ -9,27 +9,38 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 if ($_SERVER["REQUEST_METHOD"] === "PUT") {
 
-    parse_str(file_get_contents('php://input'), $_PUT);
-  
-    if (!isset($_PUT["email"])) {
+  $json = (array) json_decode(file_get_contents("php://input"));
+  $_PUT = $json;
+
+    if (!isset($_PUT["id"])) {
       http_response_code(400);
       echo json_encode(array("message" => "Campo faltoso: 'id'"));
       return;
     }
   
-    if (!isset($_PUT["nome"])) {
-      http_response_code(400);
-      echo json_encode(array("message" => "Campo faltoso: 'uf'"));
-      return;
+    if (isset($_PUT["email"])) {
+      $_PUT["updateField"] ="email";
     }
   
-    if (!isset($_PUT["senha"])) {
-      http_response_code(400);
-      echo json_encode(array("message" => "Campo faltoso: 'nome'"));
-      return;
+    else if (isset($_PUT["nome"])) {
+      $_PUT["updateField"] ="nome";
     }
   
+    else if (isset($_PUT["senha"])) {
+      $_PUT["updateField"] ="senha";
+    }
+    else{
+      $_PUT["updateField"] = null;
+    }
   
+    if($_PUT["updateField"] == null){
+      http_response_code(400);
+        echo json_encode(array("message" => "Nenhum campo selecionado!"));
+        return;
+    }
+
+    print_r($_PUT);
+
     $user = UsuarioService::getById($_PUT["id"]);
   
     if (isset($user)) {
@@ -44,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
       $updatedUser = UsuarioService::updateUser($_PUT);
   
       if (isset($updatedUser)) {
-        echo json_encode($updatedUser->toDataContract(), JSON_UNESCAPED_UNICODE);
+        echo json_encode($updatedUser, JSON_UNESCAPED_UNICODE);
         return;
       } else {
         http_response_code(500);

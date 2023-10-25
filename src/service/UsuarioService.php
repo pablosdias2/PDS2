@@ -8,20 +8,15 @@ class UsuarioService
 
     public static function handleCreateNewUser($args): ?Usuario
     {
-        $userAlreadyExists = UsuarioDAO::read(array("getByEmail", $args["email"]));
-
-        if ($userAlreadyExists) {
-            return null;
-        }
 
         $usuario = Usuario::completeObject($args);
 
         return UsuarioDAO::create($usuario);
     }
 
-    public static function updateUser($args): ?Usuario
+    public static function updateUser($args)
     {
-        return isset($email) ? UsuarioDAO::update(array($args["updateField"], $args)) : null;
+        return isset($args) ? UsuarioDAO::update(array($args["updateField"], $args)) : null;
     }
 
     public static function deleteUser($args)

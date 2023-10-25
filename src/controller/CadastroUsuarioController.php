@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $json = (array) json_decode(file_get_contents("php://input"));
     $_POST = $json;
 
-    print_r($_POST);
     if (!isset($_POST["email"])) {
         http_response_code(400);
         echo json_encode(array("message" => "Campo faltoso: 'email'"));

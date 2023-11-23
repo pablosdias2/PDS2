@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Notícia</title>
+    <!-- Adicione os links necessários para os estilos e scripts, como Bootstrap, etc. -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Adicione outros estilos necessários aqui -->
+    <!-- Adicione scripts JS necessários aqui -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Adicione outros scripts necessários aqui -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 10px;
+        }
+
+        .success-message {
+            color: #28a745;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Conteúdo da Página -->
+    <div class="container mt-5">
+        <h1>Criar Notícia</h1>
+
+        <!-- Formulário de Criação de Notícia -->
+        <form action="./PHP/processar_noticia.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="autor">Autor:</label>
+                <input type="text" class="form-control" name="autor" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <input type="text" class="form-control" name="descricao" required>
+            </div>
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" name="titulo" required>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoria:</label>
+                <input type="text" class="form-control" name="categoria" required>
+            </div>
+            <div class="form-group">
+                <label for="texto">Texto:</label>
+                <textarea class="form-control" name="texto" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="imagem">Imagem:</label>
+                <input type="file" class="form-control-file" name="imagem" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar Notícia</button>
+            <div class="text-center">
+                <a href="./administrar.php" class="btn btn-primary mb-3">Voltar para Administração</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Função para validar o formulário antes do envio
+        function validateForm() {
+            // Obtém os valores dos campos
+            var autor = document.getElementsByName('autor')[0].value;
+            var descricao = document.getElementsByName('descricao')[0].value;
+            var titulo = document.getElementsByName('titulo')[0].value;
+            var categoria = document.getElementsByName('categoria')[0].value;
+            var texto = document.getElementsByName('texto')[0].value;
+            var imagem = document.getElementsByName('imagem')[0].value;
+
+            // Verifica se algum dos campos está vazio
+            if (!autor || !descricao || !titulo || !categoria || !texto || !imagem) {
+                alert("Preencha todos os campos do formulário.");
+                return false; // Impede o envio do formulário se algum campo estiver vazio
+            }
+
+            return true; // Permite o envio do formulário se todos os campos estiverem preenchidos
+        }
+    </script>
+
+    <!-- Adicione scripts necessários, como scripts DataTables, aqui -->
+    <!-- Adicione outros scripts necessários aqui -->
+
+</body>
+
+</html>

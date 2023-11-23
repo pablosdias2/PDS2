@@ -9,7 +9,7 @@ class Noticia extends NoticiaDAO
     private $titulo;
     private $descricao;
     private $texto;
-    private Usuario $autor;
+    private $autor;
     private $imagem;
 
     public static function completeObject(array $row)
@@ -61,7 +61,7 @@ class Noticia extends NoticiaDAO
         $this->texto = $texto;
     }
 
-    public function setAutor( Usuario $autor)
+    public function setAutor( $autor)
     {
         $this->autor = $autor;
     }
@@ -92,7 +92,7 @@ class Noticia extends NoticiaDAO
         return $this->texto;
     }
 
-    public function getAutor(): Usuario
+    public function getAutor()
     {
         return $this->autor;
     }
